@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,17 +45,15 @@ public class Main {
     }
     public static void zd4(){
         List<String> strings = new ArrayList<>(List.of("один", "два","два", "три", "три", "три"));
-        for (String num:strings) {
-            int c = 0;
-            while (strings.contains(num)) {
-                c++;
-                strings.remove(num);
-            }
-            System.out.println(c);
+        Map<String, Long> frequency =
+                strings.stream().collect(Collectors.groupingBy(
+                        Function.identity(), Collectors.counting()));
+
+         System.out.println(frequency.values());
         }
 
 
 
 
-    }
+
 }
